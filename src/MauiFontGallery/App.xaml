@@ -1,14 +1,46 @@
-﻿<?xml version = "1.0" encoding = "UTF-8" ?>
-<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:MauiFontGallery"
-             x:Class="MauiFontGallery.App">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Application
+    x:Class="MauiFontGallery.App"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:MauiFontGallery.Models"
+    xmlns:sharpnado="http://sharpnado.com">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate x:Key="FontDisplayTemplate" x:DataType="models:FontDisplayItem">
+                <sharpnado:DraggableViewCell>
+                    <Border
+                        Padding="10"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource White},
+                                                          Dark={StaticResource Gray900}}"
+                        StrokeShape="RoundRectangle 10"
+                        StrokeThickness="0">
+                        <Grid RowDefinitions="*, Auto">
+
+                            <Image Grid.Row="0">
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="{Binding FontFamily}"
+                                        Glyph="{Binding Glyph}"
+                                        Size="20"
+                                        Color="{AppThemeBinding Light={StaticResource Black},
+                                                                Dark={StaticResource White}}" />
+                                </Image.Source>
+                            </Image>
+
+                            <Label
+                                Grid.Row="1"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Title}" />
+                        </Grid>
+                    </Border>
+                </sharpnado:DraggableViewCell>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

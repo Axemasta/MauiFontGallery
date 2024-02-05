@@ -3,13 +3,47 @@
     x:Class="MauiFontGallery.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MauiFontGallery"
-    Shell.FlyoutBehavior="Disabled"
+    xmlns:fonts="http://schemas.myapp.com/2023/fonts"
+    xmlns:pages="clr-namespace:MauiFontGallery.Pages"
+    Shell.FlyoutBehavior="Flyout"
     Title="MauiFontGallery">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <FlyoutItem Title="Font Awesome">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="{x:Static fonts:FontConstants.FontAwesomeFreeBrands}"
+                Glyph="{x:Static fonts:FontAwesomeIcons.FontAwesome}"
+                Color="{AppThemeBinding Light={StaticResource Black},
+                                        Dark={StaticResource White}}" />
+        </FlyoutItem.Icon>
+
+        <Tab>
+            <ShellContent
+                ContentTemplate="{DataTemplate pages:FontAwesomePage}"
+                Route="FontAwesomePage"
+                Title="Font Awesome" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Material Symbols">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="{x:Static fonts:FontConstants.MaterialSymbolsOutlined}"
+                Glyph="{x:Static fonts:FontAwesomeIcons.Google}"
+                Color="{AppThemeBinding Light={StaticResource Black},
+                                        Dark={StaticResource White}}" />
+        </FlyoutItem.Icon>
+
+        <Tab>
+            <ShellContent
+                ContentTemplate="{DataTemplate pages:MaterialSymbolsPage}"
+                Route="MaterialSymbolsPage"
+                Title="Material Symbols" />
+        </Tab>
+    </FlyoutItem>
+
+
+
+
 
 </Shell>
