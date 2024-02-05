@@ -1,4 +1,5 @@
-﻿using MauiFontGallery.Fonts.Hosting;
+﻿using CommunityToolkit.Maui;
+using MauiFontGallery.Fonts.Hosting;
 using MauiFontGallery.Pages;
 using Sharpnado.CollectionView;
 
@@ -12,6 +13,7 @@ public static class MauiProgram
         builder
             .UseMauiApp<App>()
             .RegisterFonts()
+            .UseMauiCommunityToolkit()
             .UseSharpnadoCollectionView(true)
             .ConfigureFonts(fonts =>
             {
